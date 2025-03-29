@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk Tool Hub</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        /* ==== Cyberpunk Dark Theme ==== */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(circle, #0a0a0a, #020202);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* ==== Particle Background ==== */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* ==== Glitch Header ==== */
+        .glitch {
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: cyan;
+            text-shadow: 3px 3px 0 magenta;
+            position: relative;
+            animation: glitch 1s infinite;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px 0 red, -2px -2px 0 blue; }
+            50% { text-shadow: -2px -2px 0 red, 2px 2px 0 blue; }
+            100% { text-shadow: 2px 2px 0 red, -2px -2px 0 blue; }
+        }
+
+        /* ==== Mega Menu Navigation ==== */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0px 0px 15px cyan;
+        }
+
+        .nav-link {
+            color: white;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            position: relative;
+            padding: 5px 15px;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            color: cyan;
+            text-shadow: 0px 0px 10px cyan;
+            transform: scale(1.1);
+        }
+
+        /* ==== Search Bar ==== */
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin: 20px auto;
+        }
+
+        .search-bar input {
+            width: 300px;
+            padding: 10px;
+            border: 2px solid cyan;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-bar input::placeholder {
+            color: #aaa;
+        }
+
+        /* ==== Tool Container with 3D Hover Effect ==== */
+        .tool-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 50px auto;
+            max-width: 1200px;
+        }
+
+        .tool-card {
+            width: 200px;
+            height: auto;
+            background: rgba(0, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0px 0px 10px cyan;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .tool-card:hover {
+            transform: rotateY(5deg) scale(1.05);
+            box-shadow: 0px 0px 20px magenta;
+        }
+
+        .tool-card h2 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: white;
+        }
+
+        .tool-card p {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* ==== Input and Button Styling ==== */
+        .tool-card input,
+        .tool-card select,
+        .tool-card button {
+            width: 100%;
+            margin: 5px 0;
+            padding: 5px;
+            border: 1px solid cyan;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .tool-card button {
+            background: cyan;
+            color: black;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .tool-card button:hover {
+            background: magenta;
+        }
+
+        /* ==== Image Tools ==== */
+        .image-tool img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        /* ==== Footer ==== */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0px 0px 15px cyan;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Glitch Header -->
+    <h1 class="glitch">Ultimate Web-App Toolkit</h1>
+
+    <!-- Mega Menu Navigation -->
+    <div class="navbar">
+        <a href="#" class="nav-link">Home</a>
+        <a href="#" class="nav-link">Converters</a>
+        <a href="#" class="nav-link">Calculators</a>
+        <a href="#" class="nav-link">Generators</a>
+        <a href="#" class="nav-link">Encoders</a>
+        <a href="#" class="nav-link">Text Tools</a>
+        <a href="#" class="nav-link">Image Tools</a>
+        <a href="#" class="nav-link">About</a>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" placeholder="Search for tools...">
+    </div>
+
+    <!-- Tool Section -->
+    <div class="tool-container">
+        <!-- Converters -->
+        <div class="tool-card">
+            <h2>Time Since Date Calculator</h2>
+            <label for="pastDate">Enter Past Date:</label>
+            <input type="date" id="pastDate">
+            <button onclick="calculateTimeSince()">Calculate</button>
+            <p id="timeSinceResult"></p>
+        </div>
+        
+        <div class="tool-card">
+            <h2>Hex to RGB Converter</h2>
+            <label for="hexColor">Enter Hex Color:</label>
+            <input type="text" id="hexColor" placeholder="#FFFFFF">
+            <button onclick="convertHexToRGB()">Convert</button>
+            <p id="rgbResult"></p>
+        </div>
+
+        <div class="tool-card">
+            <h2>Countdown Timer</h2>
+            <label for="countdownSeconds">Enter Seconds:</label>
+            <input type="number" id="countdownSeconds">
+            <button onclick="startCountdown()">Start Countdown</button>
+            <p id="countdownResult"></p>
+        </div>
+
+        <div class="tool-card">
+            <h2>Temperature Converter</h2>
+            <label for="temperatureInput">Enter Temperature:</label>
+            <input type="number" id="temperatureInput">
+            <select id="temperatureUnit">
+                <option value="celsius">Celsius to Fahrenheit</option>
+                <option value="fahrenheit">Fahrenheit to Celsius</option>
+            </select>
+            <button onclick="convertTemperature()">Convert</button>
+            <p id="temperatureResult"></p>
+        </div>
+
+        <div class="tool-card">
+            <h2>Unit Converter</h2>
+            <p>Convert length, weight, and more.</p>
+            <input type="number" id="unitValue" placeholder="Value">
+            <select id="unitType">
+                <option value="inches">Inches to CM</option>
+                <option value="cm">CM to Inches</option>
+                <option value="kg">KG to Pounds</option>
+                <option value="pounds">Pounds to KG</option>
+            </select>
+            <button onclick="convertUnit()">Convert</button>
+            <p id="unitResult"></p>
+        </div>
+
+        <div class="tool-card">
+            <h2>Currency Converter</h2>
+            <p>Convert currencies in real-time.</p>
+            <input type="number" id="currencyAmount" placeholder="Amount">
+            <select id="currencyFrom">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+            </select>
+            <select id="currencyTo">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+            </select>
+            <button onclick="convertCurrency()">Convert</button>
+            <p id="currencyResult"></p>
+        </div>
+
+        <div class="tool-card">
+            <h2>Time Zone Converter</h2>
+            <p>Convert between time zones.</p>
+            <input type="datetime-local" id="timeInput">
+            <select id="timeZoneFrom">
+                <option value="UTC">UTC</option>
+                <option value="EST">EST</option>
+                <option value="PST">PST</option>
+            </select>
+            <select id="timeZoneTo">
+                <option value="UTC">UTC</option>
+                <option value="EST">EST</option>
+                <option value="PST">PST</option>
+            </select>
+            <button onclick="convertTimeZone()">Convert</button>
+            <p id="timeZoneResult"></p>
+        </div>
+
+        <!-- Calculators -->
+        <div class="tool-card">
+            <h2>Age Calculator</h2>
+            <label for="birthdate">Enter your birthdate:</label>
+            <input type="date" id="birthdate">
+            <button onclick="calculateAge()">Calculate Age</button>
+            <p id="ageResult"></p>
+        </div>
+
+        <div class="tool-card">
+            <h2>BMI Calculator</h2>
+            <p>Calculate your Body Mass Index.</p>
+            <input type="number" id="bmiWeight" placeholder="Weight (kg)">
+            <input type="number" id="bmiHeight" placeholder="Height (cm)">
+            <button onclick="calculateBMI()">Calculate</button>
+            <p id="bmiResult"></p>
+        </div>
+
+        <div class="tool-card">
+            <h2>Loan Calculator</h2>
+            <p>Calculate loan payments.</p>
+            <input type="number" id="loanAmount" placeholder="Loan Amount">
+            <input type="number" id="loanInterest" placeholder="Interest Rate (%)">
+            <input type="number" id="loanTerm" placeholder="Term (years)">
+            <button onclick="calculateLoan()">Calculate</button>
+            <p id="loanResult"></p>
+        </div>
+
+        <div class="tool-card">
+            <h2>Tip Calculator</h2>
+            <p>Calculate tips easily.</p>
+            <input type="number" id="tipAmount" placeholder="Bill Amount">
+            <input type="number" id="tipPercent" placeholder="Tip Percentage">
+            <button onclick="calculateTip()">Calculate</button>
+            <p id="tipResult"></p>
+        </div>
+
+        <!-- Generators -->
+        <div class="tool-card">
+            <h2>QR Code Generator</h2>
+            <p>Instantly create QR codes.</p>
+            <input type="text" id="qrText" placeholder="Enter text or URL">
+            <button onclick="generateQR()">Generate</button>
+            <div id="qrCode"></div>
+        </div>
+
+        <div class="tool-card">
+            <h2>Password Generator</h2>
+            <p>Generate strong passwords.</p>
+            <input type="number" id="passwordLength" placeholder="Length">
+            <button onclick="generatePassword()">Generate</button>
+            <p id="passwordResult"></p>
+        </div>
+
+        <div class="tool-card">
+            <h2>UUID Generator</h2>
+            <p>Generate unique identifiers.</p>
+            <button onclick="generateUUID()">Generate</button>
+            <p id="uuidResult"></p>
+        </div>
+
+        <div class="tool-card">
+            <h2>Random Number Generator</h2>
+            <label for="minNumber">Min:</label>
+            <input type="number" id="minNumber" value="1">
+            <label for="maxNumber">Max:</label>
+            <input type="number" id="maxNumber" value="100">
+            <button onclick="generateRandomNumber()">Generate</button>
+            <p id="randomNumberResult"></p>
+        </div>
+
+        <!-- Encoders -->
+        <div class="tool-card">
+            <h2>Base64 Encoder</h2>
+            <p>Encode text to Base64.</p>
+            <input type="text" id="base64Input" placeholder="Enter text">
+            <button onclick="encodeBase64()">Encode</button>
+            <p id="base64Result"></p>
+        </div>
+
+        <div class="tool-card">
+            <h2>URL Encoder</h2>
+            <p>Encode URLs for safe transmission.</p>
+            <input type="text" id="urlInput" placeholder="Enter URL">
+            <button onclick="encodeURL()">Encode</button>
+            <p id="urlResult"></p>
+        </div>
+
+        <div class="tool-card">
+            <h2>HTML Encoder</h2>
+            <p>Encode HTML entities.</p>
+            <input type="text" id="htmlInput" placeholder="Enter HTML">
+            <button onclick="encodeHTML()">Encode</button>
+            <p id="htmlResult"></p>
+        </div>
+
+        <!-- Text Tools -->
+        <div class="tool-card">
+            <h2>Text Case Converter</h2>
+            <p>Convert text to uppercase, lowercase, etc.</p>
+            <input type="text" id="textInput" placeholder="Enter text">
+            <select id="textCase">
+                <option value="uppercase">UPPERCASE</option>
+                <option value="lowercase">lowercase</option>
+                <option value="titlecase">Title Case</option>
+            </select>
+            <button onclick="convertTextCase()">Convert</button>
+            <p id="textResult"></p>
+        </div>
+
+        <div class="tool-card">
+            <h2>Word Counter</h2>
+            <p>Count words and characters.</p>
+            <textarea id="wordInput" placeholder="Enter text"></textarea>
+            <button onclick="countWords()">Count</button>
+            <p id="wordResult"></p>
+        </div>
+
+        <div class="tool-card">
+            <h2>Lorem Ipsum Generator</h2>
+            <p>Generate placeholder text.</p>
+            <input type="number" id="loremLength" placeholder="Number of words">
+            <button onclick="generateLorem()">Generate</button>
+            <p id="loremResult"></p>
+        </div>
+
+        <!-- Image Tools -->
+        <div class="tool-card image-tool">
+            <h2>Image Sharpen</h2>
+            <label for="imageSharpenInput">Upload Image:</label>
+            <input type="file" id="imageSharpenInput" accept="image/*">
+            <label for="sharpenLevel">Sharpen Level:</label>
+            <input type="range" id="sharpenLevel" min="0" max="10" value="5">
+            <button onclick="applySharpen()">Apply Sharpen</button>
+            <img id="sharpenedImageResult" src="" alt="Sharpened Image">
+        </div>
+
+        <div class="tool-card image-tool">
+            <h2>Image to Base64 Converter</h2>
+            <label for="imageInput">Upload Image:</label>
+            <input type="file" id="imageInput" accept="image/*">
+            <button onclick="convertImageToBase64()">Convert</button>
+            <p id="base64ImageResult"></p>
+        </div>
+
+        <div class="tool-card image-tool">
+            <h2>Image Resizer</h2>
+            <p>Resize images to specific dimensions.</p>
+            <input type="file" id="resizeInput" accept="image/*">
+            <input type="number" id="resizeWidth" placeholder="Width">
+            <input type="number" id="resizeHeight" placeholder="Height">
+            <button onclick="resizeImage()">Resize</button>
+            <img id="resizedImage" alt="Resized Image">
+        </div>
+
+        <div class="tool-card image-tool">
+            <h2>Color Picker</h2>
+            <input type="color" id="colorPicker" onchange="displayColor()">
+            <p id="colorResult"></p>
+        </div>
+
+        <div class="tool-card image-tool">
+            <h2>Image Cropper</h2>
+            <p>Crop images to a specific aspect ratio.</p>
+            <input type="file" id="cropInput" accept="image/*">
+            <input type="number" id="cropWidth" placeholder="Crop Width">
+            <input type="number" id="cropHeight" placeholder="Crop Height">
+            <button onclick="cropImage()">Crop</button>
+            <img id="croppedImage" alt="Cropped Image">
+        </div>
+
+        <div class="tool-card image-tool">
+            <h2>Image Filter</h2>
+            <p>Apply filters to images.</p>
+            <input type="file" id="filterInput" accept="image/*">
+            <select id="filterType">
+                <option value="grayscale">Grayscale</option>
+                <option value="sepia">Sepia</option>
+                <option value="invert">Invert</option>
+            </select>
+            <button onclick="applyFilter()">Apply Filter</button>
+            <img id="filteredImage" alt="Filtered Image">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Cyberpunk Tool Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Initialize Particle Background
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80 },
+                size: { value: 3 },
+                color: { value: "#00ffff" },
+                line_linked: {
+                    enable: true,
+                    color: "#00ffff",
+                    width: 1
+                }
+            },
+            interactivity: {
+                events: {
+                    onhover: { enable: true, mode: "repulse" }
+                }
+            }
+        });
+
+        // ==== Converters ====
+        function calculateTimeSince() {
+            const pastDate = new Date(document.getElementById('pastDate').value);
+            const now = new Date();
+            const timeDiff = now - pastDate;
+
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+            document.getElementById('timeSinceResult').textContent = `Time since: ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+        }
+        
+        function convertHexToRGB() {
+            const hex = document.getElementById('hexColor').value;
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        if (result) {
+            const r = parseInt(result[1], 16);
+            const g = parseInt(result[2], 16);
+            const b = parseInt(result[3], 16);
+            document.getElementById('rgbResult').textContent = `RGB: ${r}, ${g}, ${b}`;
+        } else {
+            document.getElementById('rgbResult').textContent = "Invalid Hex Color";
+        }
+        }
+        
+        function startCountdown() {
+            const seconds = parseInt(document.getElementById('countdownSeconds').value);
+            let remainingSeconds = seconds;
+            const countdownResult = document.getElementById('countdownResult');
+
+        const interval = setInterval(() => {
+            if (remainingSeconds <= 0) {
+                clearInterval(interval);
+                countdownResult.textContent = "Time's up!";
+            } else {
+                countdownResult.textContent = `Time remaining: ${remainingSeconds} seconds`;
+                remainingSeconds--;
+            }
+        }, 1000);
+        }
+
+        function convertTemperature() {
+            const temperature = parseFloat(document.getElementById('temperatureInput').value);
+            const unit = document.getElementById('temperatureUnit').value;
+            let convertedTemperature;
+        if (unit === 'celsius') {
+            convertedTemperature = (temperature * 9/5) + 32;
+            document.getElementById('temperatureResult').textContent = `${temperature}°C is ${convertedTemperature.toFixed(2)}°F`;
+        } else {
+            convertedTemperature = (temperature - 32) * 5/9;
+            document.getElementById('temperatureResult').textContent = `${temperature}°F is ${convertedTemperature.toFixed(2)}°C`;
+        }
+        }
+        
+        function convertUnit() {
+            const value = parseFloat(document.getElementById('unitValue').value);
+            const type = document.getElementById('unitType').value;
+            let result;
+
+            switch (type) {
+                case 'inches':
+                    result = `${value} inches = ${(value * 2.54).toFixed(2)} cm`;
+                    break;
+                case 'cm':
+                    result = `${value} cm = ${(value / 2.54).toFixed(2)} inches`;
+                    break;
+                case 'kg':
+                    result = `${value} kg = ${(value * 2.20462).toFixed(2)} pounds`;
+                    break;
+                case 'pounds':
+                    result = `${value} pounds = ${(value / 2.20462).toFixed(2)} kg`;
+                    break;
+                default:
+                    result = 'Invalid unit type';
+            }
+
+            document.getElementById('unitResult').textContent = result;
+        }
+
+        function convertCurrency() {
+            const amount = parseFloat(document.getElementById('currencyAmount').value);
+            const from = document.getElementById('currencyFrom').value;
+            const to = document.getElementById('currencyTo').value;
+            const rates = { USD: 1, EUR: 0.85, GBP: 0.73 }; // Example rates
+            const result = (amount * rates[to] / rates[from]).toFixed(2);
+
+            document.getElementById('currencyResult').textContent = `${amount} ${from} = ${result} ${to}`;
+        }
+
+        function convertTimeZone() {
+            const time = document.getElementById('timeInput').value;
+            const from = document.getElementById('timeZoneFrom').value;
+            const to = document.getElementById('timeZoneTo').value;
+            const date = new Date(time);
+            const result = date.toLocaleString('en-US', { timeZone: to });
+
+            document.getElementById('timeZoneResult').textContent = result;
+        }
+
+        // ==== Calculators ====
+        function calculateAge() {
+        const birthdate = new Date(document.getElementById('birthdate').value);
+        const today = new Date();
+        let age = today.getFullYear() - birthdate.getFullYear();
+        const monthDifference = today.getMonth() - birthdate.getMonth();
+        if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthdate.getDate())) {
+            age--;
+        }
+        document.getElementById('ageResult').textContent = `Your age is: ${age}`;
+        }
+        
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById('bmiWeight').value);
+            const height = parseFloat(document.getElementById('bmiHeight').value) / 100;
+            const bmi = (weight / (height * height)).toFixed(2);
+
+            document.getElementById('bmiResult').textContent = `BMI: ${bmi}`;
+        }
+
+        function calculateLoan() {
+            const amount = parseFloat(document.getElementById('loanAmount').value);
+            const interest = parseFloat(document.getElementById('loanInterest').value) / 100 / 12;
+            const term = parseFloat(document.getElementById('loanTerm').value) * 12;
+            const monthly = (amount * interest * Math.pow(1 + interest, term)) / (Math.pow(1 + interest, term) - 1);
+
+            document.getElementById('loanResult').textContent = `Monthly Payment: $${monthly.toFixed(2)}`;
+        }
+
+        function calculateTip() {
+            const amount = parseFloat(document.getElementById('tipAmount').value);
+            const percent = parseFloat(document.getElementById('tipPercent').value);
+            const tip = (amount * percent / 100).toFixed(2);
+
+            document.getElementById('tipResult').textContent = `Tip: $${tip}`;
+        }
+
+        // ==== Generators ====
+        function generateQR() {
+            const text = document.getElementById('qrText').value;
+            const qrCode = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(text)}`;
+            document.getElementById('qrCode').innerHTML = `<img src="${qrCode}" alt="QR Code">`;
+        }
+
+        function generatePassword() {
+            const length = parseInt(document.getElementById('passwordLength').value);
+            const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+            let password = "";
+            for (let i = 0; i < length; i++) {
+                password += charset.charAt(Math.floor(Math.random() * charset.length));
+            }
+            document.getElementById('passwordResult').textContent = password;
+        }
+
+        function generateUUID() {
+            const uuid = crypto.randomUUID();
+            document.getElementById('uuidResult').textContent = uuid;
+        }
+
+        // ==== Encoders ====
+        function encodeBase64() {
+            const text = document.getElementById('base64Input').value;
+            const encoded = btoa(text);
+            document.getElementById('base64Result').textContent = encoded;
+        }
+
+        function encodeURL() {
+            const url = document.getElementById('urlInput').value;
+            const encoded = encodeURIComponent(url);
+            document.getElementById('urlResult').textContent = encoded;
+        }
+
+        function encodeHTML() {
+            const html = document.getElementById('htmlInput').value;
+            const encoded = html.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+            document.getElementById('htmlResult').textContent = encoded;
+        }
+
+        // ==== Text Tools ====
+        function countWords() {
+            const text = document.getElementById('wordInput').value;
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0).length;
+            const chars = text.length;
+            document.getElementById('wordResult').textContent = `Words: ${words}, Characters: ${chars}`;
+        }
+
+        function generateLorem() {
+            const length = parseInt(document.getElementById('loremLength').value);
+            const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ".repeat(length).split(' ').slice(0, length).join(' ');
+            document.getElementById('loremResult').textContent = lorem;
+        }
+
+        // ==== Image Tools ====
+        function applySharpen() {
+            const fileInput = document.getElementById('imageSharpenInput');
+            const file = fileInput.files[0];
+            const sharpenLevel = parseInt(document.getElementById('sharpenLevel').value);
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.src = event.target.result;
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.filter = `contrast(${sharpenLevel * 20}%)`;
+                    ctx.drawImage(img, 0, 0);
+                    document.getElementById('sharpenedImageResult').src = canvas.toDataURL('image/png');
+                    };
+                 };
+            reader.readAsDataURL(file);
+            } else {
+            alert("Please upload an image.");
+            }
+        }
+        
+        function convertImageToBase64() {
+        const fileInput = document.getElementById('imageInput');
+        const file = fileInput.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const base64 = event.target.result;
+                document.getElementById('base64ImageResult').textContent = `Base64: ${base64}`;
+            };
+            reader.readAsDataURL(file);
+        } else {
+            document.getElementById('base64ImageResult').textContent = "Please select an image file.";
+        }
+        }
+
+        function resizeImage() {
+            const file = document.getElementById('resizeInput').files[0];
+            const width = document.getElementById('resizeWidth').value;
+            const height = document.getElementById('resizeHeight').value;
+
+            if (file && width && height) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = new Image();
+                    img.src = e.target.result;
+                    img.onload = function () {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        document.getElementById('resizedImage').src = canvas.toDataURL();
+                    };
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function displayColor() {
+            const color = document.getElementById('colorPicker').value;
+            document.getElementById('colorResult').textContent = `Selected Color: ${color}`;
+    }
+
+        function cropImage() {
+            const file = document.getElementById('cropInput').files[0];
+            const width = document.getElementById('cropWidth').value;
+            const height = document.getElementById('cropHeight').value;
+
+            if (file && width && height) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = new Image();
+                    img.src = e.target.result;
+                    img.onload = function () {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height, 0, 0, width, height);
+                        document.getElementById('croppedImage').src = canvas.toDataURL();
+                    };
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function applyFilter() {
+            const file = document.getElementById('filterInput').files[0];
+            const filter = document.getElementById('filterType').value;
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = new Image();
+                    img.src = e.target.result;
+                    img.onload = function () {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.filter = filter === 'grayscale' ? 'grayscale(100%)' :
+                                    filter === 'sepia' ? 'sepia(100%)' :
+                                    filter === 'invert' ? 'invert(100%)' : 'none';
+                        ctx.drawImage(img, 0, 0);
+                        document.getElementById('filteredImage').src = canvas.toDataURL();
+                    };
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>
